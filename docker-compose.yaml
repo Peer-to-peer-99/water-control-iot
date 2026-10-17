@@ -1,0 +1,39 @@
+services:
+  backend:
+    container_name: water-control-iot-backend
+    build:
+      context: ./backend
+    volumes:
+      - ./backend:/var/www/html
+    ports:
+      - "8000:8000"
+    depends_on:
+      database:
+        condition: service_healthy
+
+  frontend:
+    container_name: water-control-iot-frontend
+    build:
+      context: ./frontend
+    ports:
+      - "5173:5173"
+
+
+  database:
+    image: postgres:17
+    container_name: water-control-iot-database
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+volumes:
+  postgres_data:
