@@ -15,9 +15,13 @@ services:
     container_name: water-control-iot-frontend
     build:
       context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "5173:5173"
-
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run dev -- --host 0.0.0.0
 
   database:
     image: postgres:17
