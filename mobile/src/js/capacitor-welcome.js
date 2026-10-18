@@ -1,4 +1,3 @@
-import { SplashScreen } from '@capacitor/splash-screen';
 import { Camera } from '@capacitor/camera';
 
 window.customElements.define(
@@ -7,7 +6,6 @@ window.customElements.define(
     constructor() {
       super();
 
-      SplashScreen.hide();
 
       const root = this.attachShadow({ mode: 'open' });
 
