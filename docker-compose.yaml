@@ -23,6 +23,19 @@ services:
       - /app/node_modules
     command: npm run dev -- --host 0.0.0.0
 
+  mobile:
+    container_name: water-control-iot-mobile
+    build:
+      context: ./mobile
+      dockerfile: Dockerfile
+    working_dir: /app
+    volumes:
+      - ./mobile:/app
+      - mobile_node_modules:/app/node_modules
+    ports:
+      - "5174:5173"
+    command: npm run dev -- --host 0.0.0.0
+
   database:
     image: postgres:17
     container_name: water-control-iot-database
@@ -41,3 +54,4 @@ services:
 
 volumes:
   postgres_data:
+  mobile_node_modules:
