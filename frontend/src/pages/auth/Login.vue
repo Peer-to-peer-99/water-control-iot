@@ -9,6 +9,10 @@ const isPasswordVisible = ref(false);
 function togglePasswordVisibility(){
   isPasswordVisible.value = !isPasswordVisible.value;
 }
+
+function loginWithGoogle(): void{
+    window.location.href = 'http://localhost:8000/api/v1/google/redirect'
+}
 </script>
 
 <template>
@@ -37,7 +41,7 @@ function togglePasswordVisibility(){
                :on-right-icon-click="togglePasswordVisibility"
         />
         <button class="bg-observatory-500 text-white rounded-lg px-4 py-2 w-full"> Sign in</button>
-        <button class="flex gap-2 px-5 py-2 w-full items-center justify-center text-black rounded-full bg-white dark:text-white dark:bg-black">
+        <button @click="loginWithGoogle" class="flex gap-2 px-5 py-2 w-full items-center justify-center text-black rounded-full bg-white dark:text-white dark:bg-black">
           <svg
               class="text-black dark:text-white"
               xmlns="http://www.w3.org/2000/svg"
