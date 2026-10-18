@@ -9,5 +9,9 @@ export default defineConfig({
     watch: {
       usePolling: true
     }
+  },
+  optimizeDeps: {
+    include: ['@lucide/vue']
   }
+
 })
