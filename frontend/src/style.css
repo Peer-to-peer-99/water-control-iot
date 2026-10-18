@@ -1,5 +1,17 @@
 @import "tailwindcss";
-
+@theme {
+  --color-malibu-50: #f0f7ff;
+  --color-malibu-100: #dfefff;
+  --color-malibu-200: #b8dfff;
+  --color-malibu-300: #66bdff;
+  --color-malibu-400: #33a9fd;
+  --color-malibu-500: #098eee;
+  --color-malibu-600: #0070cc;
+  --color-malibu-700: #0059a5;
+  --color-malibu-800: #044c88;
+  --color-malibu-900: #0a3f70;
+  --color-malibu-950: #06284b;
+}
 :root {
   --text: #6b6375;
   --text-h: #08060d;
