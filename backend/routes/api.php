@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +20,5 @@ Route::prefix('v1')->middleware('web')->name('api.v1.')->group(function () {
         Route::post('register', [AuthController::class, 'register'])->name('register');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     });
+    Route::get('/session/check', [SessionController::class, 'check'])->name('session.check');
 });
