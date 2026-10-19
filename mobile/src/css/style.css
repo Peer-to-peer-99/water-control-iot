@@ -1,3 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --color-observatory-50: #edfcf6;
+  --color-observatory-100: #d4f7e7;
+  --color-observatory-200: #adedd2;
+  --color-observatory-300: #77deba;
+  --color-observatory-400: #40c79c;
+  --color-observatory-500: #1cad83;
+  --color-observatory-600: #10906e;
+  --color-observatory-700: #0c7058;
+  --color-observatory-800: #0c5947;
+  --color-observatory-900: #0b493b;
+  --color-observatory-950: #052922;
+}
 html,
 body {
   padding: 0;
