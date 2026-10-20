@@ -13,7 +13,8 @@ export const useSessionStore = defineStore('session',  {
             this.loading = true;
             this.error = null;
             try {
-                this.user = await fetchUser();
+                const response = await fetchUser();
+                this.user = response?.data;
                 this.authenticated = this.user !== null;
 
                 return this.user;
