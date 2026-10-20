@@ -1,13 +1,29 @@
 import {defineStore} from 'pinia';
 import type {LoginCredentials, SessionState} from '../types/session';
-import {checkSession, loginWithGoogle as redirectToGoogle, login} from '../api/session.api';
+import {checkSession, loginWithGoogle as redirectToGoogle, login, fetchUser} from '../api/session.api';
 export const useSessionStore = defineStore('session',  {
     state: (): SessionState => ({
         authenticated: false,
         loading: false,
-        error: null
+        error: null,
+        user: null
     }),
     actions: {
+        async getUser(){
+            this.loading = true;
+            this.error = null;
+            try {
+                this.user = await fetchUser();
+                this.authenticated = this.user !== null;
+
+                return this.user;
+            } catch (error) {
+                this.error = 'Unable to retrieve user.';
+                throw error;
+            } finally {
+                this.loading = false;
+            }
+        },
         async verifySession(): Promise<boolean>{
             this.loading = true;
             this.error = null;
@@ -17,7 +33,6 @@ export const useSessionStore = defineStore('session',  {
                 return this.authenticated;
             }catch (error){
                 this.error = 'Unable to verify the session.';
-                throw new Error(this.error);
             }finally {
                 this.loading = false;
             }
@@ -31,7 +46,8 @@ export const useSessionStore = defineStore('session',  {
             this.error = null;
 
             try {
-                await login(credentials);
+                const response = await login(credentials);
+                this.user = response.data;
                 this.authenticated = true;
             }catch (error){
                 this.error = 'Unable to log in.';

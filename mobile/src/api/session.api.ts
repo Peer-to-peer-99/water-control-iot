@@ -1,6 +1,6 @@
 import api from './index';
 import type { SessionResponse, LoginResponse } from '../../types/session';
-import {LoginCredentials} from "../types/session";
+import {LoginCredentials, User} from "../types/session";
 async function checkSession(): Promise<boolean>
 {
     try {
@@ -10,7 +10,10 @@ async function checkSession(): Promise<boolean>
         throw error;
     }
 }
-
+async function fetchUser(): Promise<User | null> {
+    const response = await api.get('/v1/auth/me');
+    return response.data;
+}
 async function getCsrfCookie(): Promise<void>{
     await api.get('http://localhost:8000/sanctum/csrf-cookie');
 }
@@ -26,5 +29,7 @@ function loginWithGoogle(): void {
 export {
     checkSession,
     loginWithGoogle,
-    login
+    login,
+    fetchUser,
+    getCsrfCookie
 };

@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthService
@@ -28,6 +29,9 @@ class AuthService
         if (!$user || !Hash::check($data['password'], $user->password)) {
             return null;
         }
+        Auth::login($user);
+        request()->session()->regenerate();
+
         return $user;
     }
 }

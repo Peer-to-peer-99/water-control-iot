@@ -49,5 +49,14 @@ class AuthController extends Controller
 
     }
 
+    public function me(): JsonResponse
+    {
+        return response()->json([
+            'success' => true,
+            'data' => auth()->user(),
+            'message' => 'Logged in successfully'
+        ]);
+    }
+
 
 }
