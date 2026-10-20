@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Services\AuthService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Http\Requests\RegisterLoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-
-    public function register(RegisterLoginRequest $request): JsonResponse
+    public function __construct(
+        private readonly AuthService $authService
+    )
     {
-        $data = $request->validated();
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'google_id' => $data['google_id'],
-            'avatar' => $data['avatar'],
-        ]);
 
+    }
+
+    public function register(RegisterRequest $request): JsonResponse
+    {
+        $user = $this->authService->register($request->validated());
         return response()->json([
             'success' => true,
             'data' => $user,
@@ -29,9 +29,19 @@ class AuthController extends Controller
         ], 201);
     }
 
-    public function login(): JsonResponse
+    public function login(LoginRequest $request): JsonResponse
     {
+        $user = $this->authService->login($request->validated());
+        if(!$user) return response()->json([
+            'success' => false,
+            'message' => 'Invalid email or password'
+        ], 401);
 
+        return response()->json([
+            'success' => true,
+            'data' => $user,
+            'message' => 'Login successfully'
+        ]);
     }
 
     public function logout(): JsonResponse
