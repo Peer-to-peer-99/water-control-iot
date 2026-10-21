@@ -30,7 +30,7 @@ function handleInput(event: CustomEvent) {
 <template>
   <div class="flex items-center px-2 gap-2 rounded-lg border border-observatory-600">
     <component v-if="props.leftIcon" :is="props.leftIcon"/>
-    <IonInput
+    <ion-input
         @ionInput="handleInput"
         :value="props.modelValue"
         :type="props.type" :placeholder="props.placeholder"

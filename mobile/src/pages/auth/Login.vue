@@ -7,6 +7,7 @@ import {useSessionStore} from "../../stores/session.stores.ts";
 import {useForm} from "vee-validate";
 import {loginSchema} from "../../validation/auth.schema.ts";
 import {toTypedSchema} from "@vee-validate/zod";
+import { IonPage } from '@ionic/vue';
 
 const sessionStore = useSessionStore();
 const isPasswordVisible = ref(false);
@@ -28,7 +29,8 @@ const onSubmit = handleSubmit(async (values) => {
 </script>
 
 <template>
-  <main class="flex flex-col mx-5 space-y-4 justify-center h-screen">
+
+  <IonPage class="flex flex-col mx-5 space-y-4 justify-center h-screen">
     <img :src="Logo" class="h-25"/>
     <header>
       <h2 class="font-bold">Sign In</h2>
@@ -67,7 +69,7 @@ const onSubmit = handleSubmit(async (values) => {
       Continue with Google
     </IonButton>
     <p class="text-center">Don't have an account? <span class="text-observatory-600 underline">Sign up</span></p>
-  </main>
+  </IonPage>
 </template>
 
 <style scoped>
