@@ -23,6 +23,9 @@ onMounted(async () => {
         </div>
         <Input :left-icon="Search" placeholder="Search by address or name"/>
       </div>
+      <section>
+        <Map />
+      </section>
     </ion-content>
   </ion-page>
 </template>
