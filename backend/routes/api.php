@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\FountainController;
 use App\Http\Controllers\SessionController;
@@ -28,4 +29,5 @@ Route::prefix('v1')->name('api.v1.')->group(function () {
     Route::get('/session/check', [SessionController::class, 'check'])->name('session.check');
     Route::get('/fountains', [FountainController::class, 'index'])->name('foundains.index');
     Route::get('/fountains/{fountain}', [FountainController::class, 'show'])->name('foundains.show');
+    Route::post('/device/readings', [DeviceController::class, 'store'])->name('device.readings');
 });

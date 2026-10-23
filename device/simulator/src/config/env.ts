@@ -21,7 +21,8 @@ if (!Number.isFinite(intervalMs) || intervalMs <= 0) {
 }
 
 export const env = {
-    deviceId: requiredEnv('DEVICE_ID'),
+    //deviceId: requiredEnv('DEVICE_ID'),
+    deviceUuid: requiredEnv('DEVICE_UUID'),
     deviceApiUrl: requiredEnv('DEVICE_API_URL'),
     simulationIntervalMs: intervalMs,
 };

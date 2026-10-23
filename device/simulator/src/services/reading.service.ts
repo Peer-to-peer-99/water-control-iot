@@ -20,5 +20,8 @@ export class ReadingService {
                 `Error HTTP ${response.status}: ${responseBody}`,
             );
         }
+        console.log(
+            `[ReadingService] Reading successfully sent. HTTP ${response.status}`,
+        );
     }
 }

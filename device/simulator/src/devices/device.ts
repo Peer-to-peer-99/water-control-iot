@@ -13,18 +13,22 @@ export class Device {
         const reading = await this.sensor.read();
 
         const payload: DeviceReadingPayload = {
-            device_id: env.deviceId,
+            //device_id: env.deviceId,
+            device_uuid: env.deviceUuid,
             distance_cm: reading.distanceCm,
             measured_at: reading.measuredAt,
         };
         try {
             await this.readingService.send(payload);
         } catch (error: unknown) {
-            console.error(error);
+            console.error('[Device] Failed to send reading:', error);
         }
     }
 
     async start(): Promise<void> {
+        console.log(
+            `[Device] Simulator started. Interval: ${env.simulationIntervalMs} ms`,
+        );
         await this.sendReading();
         setInterval(() => {
             void this.sendReading();

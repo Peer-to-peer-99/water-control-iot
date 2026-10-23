@@ -40,29 +40,31 @@ const onSubmit = handleSubmit(async (values) => {
       <h2 class="font-bold">Sign In</h2>
       <p>Access your account to get water and track your usage</p>
     </header>
+    <div class="space-y-2">
+      <div>
+        <Input
+            type="email"
+            v-model="email"
+            v-bind="emailAttrs"
+            :left-icon="Mails"
+            placeholder="E-mail or phone"
+        />
+        <p v-if="errors.email"  class="text-red-500">{{errors.email}}</p>
+      </div>
 
-    <div>
-      <Input
-          type="email"
-          v-model="email"
-          v-bind="emailAttrs"
-          :left-icon="Mails"
-          placeholder="E-mail or phone"
-      />
-      <p v-if="errors.email"  class="text-red-500">{{errors.email}}</p>
+      <div>
+        <Input
+            :type="isPasswordVisible ? 'text' : 'password'"
+            v-model="password"
+            v-bind="passwordAttrs"
+            :left-icon="Lock" placeholder="Password"
+            :right-icon="isPasswordVisible ? Eye : EyeOff"
+            :on-right-icon-click="togglePasswordVisibility"
+        />
+        <p v-if="errors.password"  class="text-red-500">{{errors.password}}</p>
+      </div>
     </div>
 
-    <div>
-      <Input
-          :type="isPasswordVisible ? 'text' : 'password'"
-          v-model="password"
-          v-bind="passwordAttrs"
-          :left-icon="Lock" placeholder="Password"
-          :right-icon="isPasswordVisible ? Eye : EyeOff"
-          :on-right-icon-click="togglePasswordVisibility"
-      />
-      <p v-if="errors.password"  class="text-red-500">{{errors.password}}</p>
-    </div>
     <IonButton
         @click="onSubmit"
         class="flex items-center justify-center bg-observatory-500 rounded-lg text-white px-3 py-2">Sign in</IonButton>

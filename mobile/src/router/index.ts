@@ -3,6 +3,7 @@ import { createRouter,  createWebHistory }  from "@ionic/vue-router";
 import SplashPage from "../pages/SplashPage.vue";
 import Login from "../pages/auth/Login.vue";
 import HomePage from "../pages/HomePage.vue";
+import WaterCollection from '../pages/fountains/WaterCollection.vue';
 import ProfilePage from '../pages/ProfilePage.vue';
 import TabsLayout from '../layouts/TabsLayout.vue';
 import {useSessionStore} from "../stores/session.stores";
@@ -55,6 +56,12 @@ const routes = [
         meta: {
             requiresAuth: true
         }
+    },
+    {
+        path: '/fountain/:id/collect',
+        name: 'WaterCollection',
+        component: WaterCollection,
+        props: true,
     }
 ];
 
