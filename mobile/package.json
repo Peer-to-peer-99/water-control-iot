@@ -1,0 +1,57 @@
+{
+  "name": "capacitor-app",
+  "version": "1.0.0",
+  "description": "An Amazing Capacitor App",
+  "type": "module",
+  "keywords": [
+    "capacitor",
+    "mobile"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/camera": "latest",
+    "@capacitor/core": "latest",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/keyboard": "^8.0.6",
+    "@capacitor/network": "^8.0.1",
+    "@capacitor/splash-screen": "^8.0.2",
+    "@capacitor/status-bar": "^8.0.4",
+    "@ionic/vue": "^9.0.8",
+    "@ionic/vue-router": "^9.0.8",
+    "@lucide/vue": "^1.59.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@vee-validate/zod": "^4.15.1",
+    "axios": "^1.20.0",
+    "leaflet": "^1.9.4",
+    "pinia": "^4.1.0",
+    "tailwindcss": "^4.3.3",
+    "vee-validate": "^4.15.1",
+    "vue": "^3.5.44",
+    "vue-router": "^5.4.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "latest",
+    "@types/leaflet": "^1.9.22",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "typescript": "^7.0.2",
+    "vite": "^7.3.1",
+    "vue-tsc": "^3.3.13"
+  },
+  "author": "",
+  "license": "ISC",
+  "overrides": {
+    "xcode": {
+      "uuid": "11.1.1"
+    }
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}
