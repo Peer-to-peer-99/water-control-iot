@@ -36,6 +36,17 @@ services:
       - "5174:5173"
     command: npm run dev -- --host 0.0.0.0
 
+  device-simulator:
+    build:
+      context: ./device/simulator
+      dockerfile: Dockerfile
+    container_name: water-control-iot-device-simulator
+    restart: unless-stopped
+    env_file:
+      ./device/simulator/.env
+    depends_on:
+      - backend
+
   database:
     image: postgres:17
     container_name: water-control-iot-database
