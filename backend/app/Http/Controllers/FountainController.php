@@ -12,11 +12,19 @@ class FountainController extends Controller
         $fountains = Fountain::query()->select([
             'id',
             'name',
+            'description',
+            'address',
             'latitude',
             'longitude',
+            'status'
         ])->whereNotNull('latitude')
             ->whereNotNull('longitude')->get();
 
         return response()->json($fountains);
+    }
+
+    public function show(Fountain $fountain)
+    {
+        return response()->json($fountain);
     }
 }

@@ -5,6 +5,7 @@ import Login from "../pages/auth/Login.vue";
 import HomePage from "../pages/HomePage.vue";
 import ProfilePage from '../pages/ProfilePage.vue';
 import TabsLayout from '../layouts/TabsLayout.vue';
+import {useSessionStore} from "../stores/session.stores";
 
 const routes = [
     {
@@ -20,10 +21,16 @@ const routes = [
         path: '/Login',
         name: 'Login',
         component: Login,
+        meta: {
+            guestOnly: true
+        }
     },
     {
         path: '/tabs',
         component: TabsLayout,
+        meta: {
+            requiresAuth: true
+        },
         children: [
             {
                 path: '',
@@ -41,6 +48,14 @@ const routes = [
             }
         ]
     },
+    {
+        path: '/fountain/:id',
+        name: 'FountainDetails',
+        component: () => import('../pages/fountains/FountainDetails.vue'),
+        meta: {
+            requiresAuth: true
+        }
+    }
 ];
 
 const router = createRouter({
@@ -48,4 +63,11 @@ const router = createRouter({
     routes,
 });
 
+router.beforeEach((to) => {
+    const sessionStore = useSessionStore();
+
+    if (to.meta.requiresAuth && !sessionStore.authenticated) {
+        return { name: 'Login' };
+    }
+});
 export default router;

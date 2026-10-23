@@ -8,9 +8,11 @@ import {useForm} from "vee-validate";
 import {loginSchema} from "../../validation/auth.schema.ts";
 import {toTypedSchema} from "@vee-validate/zod";
 import { IonPage } from '@ionic/vue';
+import {useRouter} from "vue-router";
 
 const sessionStore = useSessionStore();
 const isPasswordVisible = ref(false);
+const router = useRouter();
 
 const {defineField, errors, handleSubmit} = useForm({
   validationSchema: toTypedSchema(loginSchema)
@@ -24,6 +26,8 @@ function togglePasswordVisibility() {
 }
 const onSubmit = handleSubmit(async (values) => {
   await sessionStore.login(values);
+  await router.replace({ name: 'Home' });
+
 });
 
 </script>
