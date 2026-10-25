@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class FountainController extends Controller
 {
+    private const RESERVOIR_HEIGHT_CM = 100;
     public function __construct(
         protected FountainDetailsService $fountainDetailsService
     )
@@ -21,6 +22,7 @@ class FountainController extends Controller
             'name',
             'description',
             'address',
+            'photo_url',
             'latitude',
             'longitude',
             'status'

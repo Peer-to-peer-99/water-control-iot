@@ -11,6 +11,7 @@ class Fountain extends Model
         'name',
         'description',
         'address',
+        'photo_url',
         'latitude',
         'longitude',
         'status'
