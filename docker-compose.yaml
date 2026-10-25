@@ -47,6 +47,20 @@ services:
     depends_on:
       - backend
 
+  simulator-display:
+    build:
+      context: ./device/display
+      dockerfile: Dockerfile
+    container_name: water-control-iot-simulator-display
+    restart: unless-stopped
+    volumes:
+      - ./device/display:/app
+      - /app/node_modules
+    ports:
+      - "5176:5173"
+    depends_on:
+      - backend
+
   database:
     image: postgres:17
     container_name: water-control-iot-database
