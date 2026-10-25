@@ -30,4 +30,5 @@ Route::prefix('v1')->name('api.v1.')->group(function () {
     Route::get('/fountains', [FountainController::class, 'index'])->name('foundains.index');
     Route::get('/fountains/{fountain}', [FountainController::class, 'show'])->name('foundains.show');
     Route::post('/device/readings', [DeviceController::class, 'store'])->name('device.readings');
+    Route::get('/fountains/{fountain}/readings/latest', [DeviceController::class, 'latestReading'])->name( 'device.latest-reading');
 });

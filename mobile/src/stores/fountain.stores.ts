@@ -17,6 +17,7 @@ export const useFountainStore = defineStore('fountain', {
             try {
                 this.fountains = await fetchFountains();
             }catch (error){
+                // @ts-ignore
                 this.error = error;
             }
         },
@@ -29,7 +30,8 @@ export const useFountainStore = defineStore('fountain', {
             try {
                 this.fountain = await fetchFountain(id);
             }catch (error){
-                this.error = error
+                // @ts-ignore
+                this.error = error;
             }
         }
     }

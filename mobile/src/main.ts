@@ -12,6 +12,7 @@ import '@ionic/vue/css/normalize.css';
 import '@ionic/vue/css/structure.css';
 import '@ionic/vue/css/typography.css';
 
+
 const app = createApp(App);
 const pinia = createPinia();
 

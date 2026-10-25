@@ -6,6 +6,7 @@ use App\Models\Fountain;
 
 class FountainDetailsService
 {
+    private const RESERVOIR_HEIGHT_CM = 100;
     public function getDetails(Fountain $fountain): array
     {
         $device = $fountain->devices()->with([
@@ -17,6 +18,27 @@ class FountainDetailsService
 
         $connected = $lastSeen !== null && $lastSeen->greaterThanOrEqualTo(now()->subSeconds(15));
 
+        $distance = $reading?->distance_cm !== null
+            ? (float) $reading->distance_cm
+            : null;
+
+        $percentage = null;
+
+        if (
+            $distance !== null
+            && $distance >= 0
+            && $distance <= self::RESERVOIR_HEIGHT_CM
+        ) {
+            $percentage = round(
+                (
+                    (self::RESERVOIR_HEIGHT_CM - $distance)
+                    / self::RESERVOIR_HEIGHT_CM
+                ) * 100,
+                2
+            );
+        }
+
+
         return [
             'id' => $fountain->id,
             'name' => $fountain->name,
@@ -25,10 +47,8 @@ class FountainDetailsService
             'status' => $fountain->status,
 
             'water_level' => [
-                'distance_cm' => $reading?->distance_cm !== null
-                    ? (float) $reading->distance_cm
-                    : null,
-                'percentage' => null,
+                'distance_cm' => $distance,
+                'percentage' => $percentage,
             ],
 
             'connection' => [

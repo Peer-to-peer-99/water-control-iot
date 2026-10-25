@@ -15,4 +15,11 @@ class DeviceReadingService
             "measured_at" => $data['measured_at'],
         ]);
     }
+
+    public function latestForFountain(int $fountainId): ?Reading
+    {
+        return Reading::query()->whereHas('device', function ($query) use ($fountainId) {
+            $query->where('fountain_id', $fountainId);
+        } )->orderByDesc('measured_at')->orderByDesc('id')->first();
+    }
 }

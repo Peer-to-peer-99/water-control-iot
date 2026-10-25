@@ -4,6 +4,11 @@ export class ReadingService {
     constructor(private readonly apiUrl: string) {}
 
     async send(reading: DeviceReadingPayload): Promise<void> {
+        console.log('[ReadingService] Sending reading:', {
+            url: this.apiUrl,
+            payload: reading,
+        });
+
         const response = await fetch(this.apiUrl, {
             method: 'POST',
             headers: {
@@ -13,13 +18,17 @@ export class ReadingService {
             body: JSON.stringify(reading),
         });
 
-        if (!response.ok) {
-            const responseBody = await response.text();
+        const responseBody = await response.text();
 
+        console.log('[ReadingService] HTTP status:', response.status);
+        console.log('[ReadingService] API response:', responseBody);
+
+        if (!response.ok) {
             throw new Error(
                 `Error HTTP ${response.status}: ${responseBody}`,
             );
         }
+
         console.log(
             `[ReadingService] Reading successfully sent. HTTP ${response.status}`,
         );
