@@ -10,9 +10,6 @@ import { moneyOptions } from '../data/money';
 import type { Money } from '../types/money';
 
 const router = useRouter();
-
-// Valor provisório para testar a interface.
-// Depois, receba o valor calculado na seleção do tambor.
 const amountDue = ref(5);
 
 const selectedMoney = ref<Money | null>(null);
@@ -61,7 +58,6 @@ function startInsertion() {
 function finishInsertion() {
   if (!selectedMoney.value || !isInserting.value) return;
 
-  // Só contabiliza depois da animação.
   insertedMoney.value.push(selectedMoney.value);
 
   selectedMoney.value = null;
@@ -97,15 +93,16 @@ function continueToRefilling() {
           :disabled="isInserting"
           @click="goBack"
       >
-        ← Voltar
+        <ChevlotLeft/>
+        Back
       </button>
 
       <div>
         <span class="eyebrow">WATER CONTROL IOT</span>
-        <h1>Pagamento</h1>
+        <h1>Payment</h1>
 
         <p>
-          Escolha as moedas e notas que deseja inserir na máquina.
+          Choose the coins and banknotes you wish to insert into the machine.
         </p>
       </div>
     </header>
@@ -121,7 +118,7 @@ function continueToRefilling() {
 
         <div class="insertion-controls">
           <div class="selected-description">
-            <span>Dinheiro selecionado</span>
+            <span>Selected money</span>
 
             <strong v-if="selectedMoney">
               {{ selectedMoney.label }}
@@ -135,7 +132,7 @@ function continueToRefilling() {
             </strong>
 
             <strong v-else class="no-selection">
-              Nenhum item selecionado
+              No item selected
             </strong>
           </div>
 
@@ -145,15 +142,14 @@ function continueToRefilling() {
               :disabled="!selectedMoney || isInserting"
               @click="startInsertion"
           >
-            Inserir dinheiro
+            Insert money
           </button>
         </div>
 
         <section class="inserted-list">
-          <h2>Dinheiro inserido</h2>
-
+          <h2>Money inserted</h2>
           <p v-if="insertedMoney.length === 0" class="empty-state">
-            Nenhuma moeda ou nota inserida.
+            No coins or banknotes inserted.
           </p>
 
           <ul v-else>
