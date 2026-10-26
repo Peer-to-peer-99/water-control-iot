@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Fountain extends Model
 {
@@ -10,8 +11,14 @@ class Fountain extends Model
         'name',
         'description',
         'address',
+        'photo_url',
         'latitude',
         'longitude',
         'status'
     ];
+
+    public function devices(): HasMany
+    {
+        return $this->hasMany(Device::class);
+    }
 }
