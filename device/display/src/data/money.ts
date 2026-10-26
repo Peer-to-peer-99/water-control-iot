@@ -9,7 +9,7 @@ export const moneyOptions: Money[] = [
         width: 22,
         height: 22,
         diameter: 22,
-        modelUrl: '/models/coins/coin-005.glb',
+        modelUrl: '/models/coins/realistic/coin-005.glb',
     },
     {
         id: 'coin-010',
@@ -19,7 +19,7 @@ export const moneyOptions: Money[] = [
         width: 20,
         height: 20,
         diameter: 20,
-        modelUrl: '/models/coins/coin-010.glb',
+        modelUrl: '/models/coins/realistic/coin-010.glb',
     },
     {
         id: 'coin-025',
@@ -29,7 +29,7 @@ export const moneyOptions: Money[] = [
         width: 25,
         height: 25,
         diameter: 25,
-        modelUrl: '/models/coins/coin-025.glb',
+        modelUrl: '/models/coins/realistic/coin-025.glb',
     },
     {
         id: 'coin-050',
@@ -39,7 +39,7 @@ export const moneyOptions: Money[] = [
         width: 23,
         height: 23,
         diameter: 23,
-        modelUrl: '/models/coins/coin-050.glb',
+        modelUrl: '/models/coins/realistic/coin-050.glb',
     },
     {
         id: 'coin-100',
@@ -49,7 +49,7 @@ export const moneyOptions: Money[] = [
         width: 27,
         height: 27,
         diameter: 27,
-        modelUrl: '/models/coins/coin-100.glb',
+        modelUrl: '/models/coins/realistic/coin-100.glb',
     },
     {
         id: 'bill-2',
