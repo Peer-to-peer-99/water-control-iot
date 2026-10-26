@@ -358,7 +358,7 @@ onBeforeUnmount(() => {
 
     <div v-if="loading" class="overlay">
       <div class="spinner"></div>
-      <span>Carregando modelo 3D...</span>
+      <span>Loading 3D model...</span>
     </div>
 
     <div v-else-if="errorMessage" class="overlay error">
@@ -367,7 +367,7 @@ onBeforeUnmount(() => {
 
     <div v-else class="level-indicator">
       <span class="level-dot"></span>
-      Nível: {{ Math.round(fillPercentage) }}%
+      Level: {{ Math.round(fillPercentage) }}%
     </div>
   </div>
 </template>

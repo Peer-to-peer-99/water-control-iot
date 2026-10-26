@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Container} from '../types/container';
+import type {Container} from '../../types/container.ts';
 
 defineProps<{
   containers: Container[];
@@ -40,13 +40,13 @@ const emit = defineEmits<{
 
       <div class="container-info">
         <strong>{{ container.name }}</strong>
-        <span>{{ container.capacity }} litros</span>
+        <span>{{ container.capacity }} liters</span>
       </div>
 
       <span
           v-if="selectedId === container.id"
           class="selected-indicator"
-          aria-label="Selecionado"
+          aria-label="Selected"
       >
         ✓
       </span>

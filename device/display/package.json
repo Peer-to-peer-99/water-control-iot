@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "three": "^0.186.1",
-    "vue": "^3.5.44"
+    "vue": "^3.5.44",
+    "vue-router": "^5.4.0"
   },
   "devDependencies": {
     "@types/node": "^24.19.2",
